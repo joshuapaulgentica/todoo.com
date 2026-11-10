@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TODO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Cinematic extras -->
+  <div class="bars"></div>
+  <div class="bokeh"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <!-- Intro scene (click to skip) -->
+  <div class="intro" id="intro">
+    <div class="intro-inner">
+      <h1 class="title" aria-label="TODO">
+        <span style="--i:0">T</span><span style="--i:1">O</span><span style="--i:2">D</span><span style="--i:3">O</span>
+      </h1>
+      <p class="tagline">Plan it. Track it. Finish it.</p>
+    </div>
+  </div>
+
+  <main class="stage">
+
+    <!-- LOGIN / REGISTER -->
+    <section id="auth" class="glass auth">
+      <h2 class="brand">TODO</h2>
+      <div class="switch">
+        <button type="button" id="tab-login" class="active">Login</button>
+        <button type="button" id="tab-register">Create account</button>
+      </div>
+
+      <form id="login-form">
+        <label>Email <input type="email" id="l-email" required autocomplete="email" /></label>
+        <label>Password <input type="password" id="l-pass" required autocomplete="current-password" /></label>
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+      <form id="register-form" hidden>
+        <label>Your name <input type="text" id="r-name" maxlength="60" required /></label>
+        <label>Email <input type="email" id="r-email" required autocomplete="email" /></label>
+        <label>Password (6+ characters) <input type="password" id="r-pass" minlength="6" required autocomplete="new-password" /></label>
+        <button type="submit" class="btn">Create account</button>
+      </form>
+
+      <p id="auth-msg" class="msg" role="alert"></p>
+    </section>
+
+    <!-- HOMEPAGE AFTER LOGIN -->
+    <section id="app" hidden>
+      <header class="topbar glass">
+        <h2 class="brand">TODO</h2>
+        <div><span id="hello"></span> <button type="button" id="logout" class="btn small ghost">Logout</button></div>
+      </header>
+
+      <div class="overview glass">
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" class="track"></circle>
+            <circle cx="60" cy="60" r="52" class="fill" id="ring"></circle>
+          </svg>
+          <b id="overall">0%</b>
+        </div>
+        <div class="counts">
+          <h3>Your progress</h3>
+          <p><b id="c-done">0</b> complete &middot; <b id="c-doing">0</b> in progress &middot; <b id="c-new">0</b> not started</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <form id="task-form" class="glass">
+          <h3 id="form-title">Add a task</h3>
+          <input type="hidden" id="task-id" />
+          <label>Task <input type="text" id="t-title" maxlength="120" required /></label>
+          <label>Notes <textarea id="t-notes" rows="3" maxlength="500"></textarea></label>
+          <label>Progress: <b id="t-out">0%</b>
+            <input type="range" id="t-progress" min="0" max="100" step="5" value="0" />
+          </label>
+          <div class="row">
+            <button type="submit" class="btn" id="save-btn">Add task</button>
+            <button type="button" id="cancel-btn" class="btn ghost" hidden>Cancel</button>
+          </div>
+        </form>
+
+        <div class="glass">
+          <div class="chips" id="chips">
+            <button type="button" class="chip active" data-f="all">All</button>
+            <button type="button" class="chip" data-f="new">Not started</button>
+            <button type="button" class="chip" data-f="doing">In progress</button>
+            <button type="button" class="chip" data-f="done">Complete</button>
+          </div>
+          <div id="list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
